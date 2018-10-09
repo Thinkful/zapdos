@@ -6,9 +6,9 @@ const glob = require('glob');
 
 const { createUuids, getLibraryFiles, setLibraryFiles } = require('../lib');
 
-class UuisCommand extends Command {
+class UuidsCommand extends Command {
   async run() {
-    const { flags } = this.parse(UuisCommand);
+    const { flags } = this.parse(UuidsCommand);
 
     const directory = flags.directory;
     const strict = flags.strict;
@@ -32,13 +32,13 @@ class UuisCommand extends Command {
   }
 }
 
-UuisCommand.description = `Generate uuids for library
+UuidsCommand.description = `Generate uuids for library
 Each directory in \`library\` should have a \`content.md\` file with metadata
 at the top. This function looks at all the content and adds a new uuid to the
 metadata if it's not already present.
 `;
 
-UuisCommand.flags = {
+UuidsCommand.flags = {
   strict: flags.boolean({ char: 's', description: 'Run in strict mode' }),
   directory: flags.string({
     char: 'd',
@@ -47,4 +47,4 @@ UuisCommand.flags = {
   }),
 };
 
-module.exports = UuisCommand;
+module.exports = UuidsCommand;
