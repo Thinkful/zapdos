@@ -22,7 +22,7 @@ $ npm install -g @thinkful/zapdos
 $ zapdos COMMAND
 running command...
 $ zapdos (-v|--version|version)
-@thinkful/zapdos/0.0.0 darwin-x64 node-v8.12.0
+@thinkful/zapdos/0.0.1 darwin-x64 node-v8.12.0
 $ zapdos --help [COMMAND]
 USAGE
   $ zapdos COMMAND
@@ -56,7 +56,7 @@ DESCRIPTION
   to any file without one.
 ```
 
-_See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.0/src/commands/uuids.js)_
+_See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/uuids.js)_
 
 ## `zapdos help [COMMAND]`
 
