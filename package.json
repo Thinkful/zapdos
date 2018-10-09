@@ -1,0 +1,55 @@
+{
+  "name": "@thinkful/zapdos",
+  "description": "Content and program structure build tool for Thinkfu",
+  "version": "0.0.0",
+  "author": "ripleyaffect @ripleyaffect",
+  "bin": {
+    "zapdos": "./bin/run"
+  },
+  "bugs": "https://github.com/Thinkful/zapdos/issues",
+  "dependencies": {
+    "@oclif/command": "^1.5.2",
+    "@oclif/config": "^1.8.6",
+    "@oclif/plugin-help": "^2.1.2"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.19.0",
+    "@oclif/test": "^1.2.1",
+    "chai": "^4.1.2",
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.1.0",
+    "globby": "^8.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/Thinkful/zapdos",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "zapdos",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "Thinkful/zapdos",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme && npm shrinkwrap",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
