@@ -8,10 +8,9 @@ const { createUuids, getLibraryFiles, setLibraryFiles } = require('../lib');
 
 class UuidsCommand extends Command {
   async run() {
-    const { flags } = this.parse(UuidsCommand);
-
-    const directory = flags.directory;
-    const strict = flags.strict;
+    const {
+      flags: { directory, strict },
+    } = this.parse(UuidsCommand);
 
     const coloredMode = strict ? c.red('strict') : c.green('normal');
     const cwd = process.cwd();

@@ -5,14 +5,16 @@ const globby = require('globby');
 
 const getLibraryFile = async filePath => {
   try {
+    // Read the file markdown
     const fileRaw = await fs.readFile(filePath, 'utf8');
 
+    // Create a lightweight object with path and data
     return {
+      ...frontMatter(fileRaw),
       path: filePath,
-      data: frontMatter(fileRaw),
     };
   } catch (error) {
-    new Error(`Could not parse file at ${c.red(filePath)}`);
+    new Error(`Could not parse file at ${c.red(filePath)}:\n${error}`);
   }
 };
 
@@ -25,10 +27,8 @@ module.exports = async targetDirectory => {
 
   const fileObjects = [];
 
-  // Create lightweight file objects with path and data
   for (const filePath of filePaths) {
-    const fileObject = await getLibraryFile(filePath);
-    fileObjects.push(fileObject);
+    fileObjects.push(await getLibraryFile(filePath));
   }
 
   return fileObjects;
