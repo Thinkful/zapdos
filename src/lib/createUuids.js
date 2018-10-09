@@ -5,7 +5,7 @@ const processFile = (file, options) => {
   const { attributes, path } = file;
 
   // Error out if running in strict mode and no uuid
-  if (options && options.strict && !data.uuid) {
+  if (options && options.strict && !attributes.uuid) {
     throw new Error(`${c.red(path)} has no uuid. Exiting strict mode`);
   }
 
