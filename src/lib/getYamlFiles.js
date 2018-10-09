@@ -1,19 +1,15 @@
 const c = require('ansi-colors');
-const frontMatter = require('front-matter');
 const fs = require('fs-extra');
 const globby = require('globby');
+const yaml = require('js-yaml');
 
-const getLibraryFile = async filePath => {
+const getYamlFile = async filePath => {
   try {
     // Read the file markdown
     const fileRaw = await fs.readFile(filePath, 'utf8');
 
-    // Add required dashes to front of file if missing
-    const fileCleaned = /^---\n/.test(fileRaw) ? fileRaw : `---\n${fileRaw}`;
-
-    // Create a lightweight object with path and data
     return {
-      ...frontMatter(fileCleaned),
+      ...yaml.load(fileRaw),
       path: filePath,
     };
   } catch (error) {
@@ -23,7 +19,7 @@ const getLibraryFile = async filePath => {
 
 module.exports = async targetDirectory => {
   // Create the pattern for finding all content files
-  const globPattern = `${targetDirectory}/**/content.md`;
+  const globPattern = `${targetDirectory}/*.yaml`;
 
   // Get all file paths matching the pattern
   const filePaths = await globby(globPattern);
@@ -31,7 +27,7 @@ module.exports = async targetDirectory => {
   const fileObjects = [];
 
   for (const filePath of filePaths) {
-    fileObjects.push(await getLibraryFile(filePath));
+    fileObjects.push(await getYamlFile(filePath));
   }
 
   return fileObjects;

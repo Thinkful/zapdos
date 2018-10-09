@@ -35,26 +35,28 @@ USAGE
 
 <!-- commands -->
 
-- [`zapdos hello`](#zapdos-hello)
+- [`zapdos uuids`](#zapdos-uuids)
 - [`zapdos help [COMMAND]`](#zapdos-help-command)
 
-## `zapdos hello`
-
-Describe the command here
+## `zapdos uuids`
 
 ```
 USAGE
-  $ zapdos hello
+  $ zapdos uuids
 
 OPTIONS
-  -n, --name=name  name to print
+  -l, --libraryDir=libraryDir    [default: library] Directory containing library
+  -m, --modulesDir=modulesDir    [default: modules] Directory containing module files
+  -p, --programsDir=programsDir  [default: programs] Directory containing program files
+  -s, --strict                   Run in strict mode
 
 DESCRIPTION
-  ...
-  Extra documentation goes here
+  This function looks at all the `content.md` files in the library directory and
+  all `.yaml` files in the module and program directories and adds a new uuid
+  to any file without one.
 ```
 
-_See code: [src/commands/hello.js](https://github.com/Thinkful/zapdos/blob/v0.0.0/src/commands/hello.js)_
+_See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.0/src/commands/uuids.js)_
 
 ## `zapdos help [COMMAND]`
 
@@ -71,6 +73,6 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.2/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.2/src/commands/help.js)_
 
 <!-- commandsstop -->
