@@ -1,7 +1,7 @@
 {
   "name": "@thinkful/zapdos",
   "description": "Content and program structure build tool for Thinkfu",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "ripleyaffect @ripleyaffect",
   "bin": {
     "zapdos": "./bin/run"
@@ -10,7 +10,14 @@
   "dependencies": {
     "@oclif/command": "^1.5.2",
     "@oclif/config": "^1.8.6",
-    "@oclif/plugin-help": "^2.1.2"
+    "@oclif/plugin-help": "^2.1.2",
+    "ansi-colors": "^3.1.0",
+    "front-matter": "^3.0.0",
+    "fs-extra": "^7.0.0",
+    "globby": "^8.0.1",
+    "js-yaml": "^3.12.0",
+    "lodash": "^4.17.11",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.19.0",
@@ -18,7 +25,6 @@
     "chai": "^4.1.2",
     "eslint": "^5.5.0",
     "eslint-config-prettier": "^3.1.0",
-    "globby": "^8.0.1",
     "mocha": "^5.2.0",
     "nyc": "^13.0.1"
   },
