@@ -24,18 +24,24 @@ class ModuleCommand extends Command {
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
     this.log(`📦 Module: ${c.blue(modulePath)}`);
 
-    // Get the module
-    const module = await getYamlFile(modulePath);
+    try {
+      // Get the module
+      const module = await getYamlFile(modulePath);
 
-    // Get the library objects
-    const libraryFiles = await getLibraryFiles(libraryDirectory);
+      // Get the library objects
+      const libraryFiles = await getLibraryFiles(libraryDirectory);
 
-    // Attach the children to the object
-    module.checkpoints = await expandModuleCheckpoints(module, libraryFiles);
+      // Attach the children to the object
+      module.checkpoints = await expandModuleCheckpoints(module, libraryFiles);
 
-    this.log(module);
+      // Just log for now
+      this.log(module);
 
-    this.log(c.green('✅ All done!'));
+      this.log(c.green('✅ All done!'));
+    } catch (error) {
+      this.log(c.red('❌ Failed'));
+      this.error(error);
+    }
   }
 }
 

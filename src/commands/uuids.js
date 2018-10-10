@@ -56,6 +56,7 @@ class UuidsCommand extends Command {
 
       this.log(c.green('✅ All done!'));
     } catch (error) {
+      this.log(c.red('❌ Failed'));
       this.error(error);
     }
   }
