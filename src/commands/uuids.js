@@ -1,8 +1,5 @@
-const fs = require('fs');
-
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
-const glob = require('glob');
 
 const {
   createFileUuids,
