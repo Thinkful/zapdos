@@ -7,7 +7,7 @@ const {
   expandModuleCheckpoints,
   getLibraryFiles,
   getYamlFile,
-} = require('../lib');
+} = require('../../lib');
 
 class ModuleCommand extends Command {
   async run() {
