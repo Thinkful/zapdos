@@ -2,13 +2,13 @@ const getCurriclumCheckpointFromLibraryFile = libFile => ({
   type: 'checkpoint',
   children: null,
   src: libFile.src,
-  uuid: libFile.uuid,
+  uuid: libFile.attributes.uuid,
   content: {
     body: '<p>Hello world</p>',
   },
-  time: libFile.time,
-  name: libFile.name || 'Unknown',
-  author: libFile.author || 'Unknown',
+  time: libFile.attributes.time,
+  name: libFile.attributes.name || 'Unknown',
+  author: libFile.attributes.author || 'Unknown',
 });
 
 module.exports = modFile => ({
@@ -17,7 +17,7 @@ module.exports = modFile => ({
   name: modFile.name,
   id: modFile.code,
   code: modFile.code,
-  version: '1',
+  version: modFile.version || '1',
   content: { body: '' },
   author: modFile.author || 'Unknown',
   parent: null,
