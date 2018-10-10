@@ -51,12 +51,31 @@ OPTIONS
   -s, --strict                   Run in strict mode
 
 DESCRIPTION
-  This function looks at all the `content.md` files in the library directory and
-  all `.yaml` files in the module and program directories and adds a new uuid
-  to any file without one.
+  Loads all the `content.md` files in the library directory and all `.yaml`
+  files in the module and program directories and adds a new uuid to any file
+  without one.
 ```
 
 _See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/uuids.js)_
+
+## `zapdos module`
+
+Generate a module
+
+```
+USAGE
+  $ zapdos module --name [name]
+
+OPTIONS
+  -l, --libraryDir=libraryDir  [default: library] Directory containing library
+  -m, --modulesDir=modulesDir  [default: modules] Directory containing module files
+  -n, --name=name              (required) Name of module to build (eg [name] in /modules/[name].yaml)
+
+DESCRIPTION
+  Loads a module's \`.yaml\` file and adds checkpoint objects from the library.
+```
+
+_See code: [src/commands/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/module.js)_
 
 ## `zapdos help [COMMAND]`
 
