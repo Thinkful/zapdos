@@ -3,11 +3,7 @@ const path = require('path');
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
-const {
-  expandModuleCheckpoints,
-  getLibraryFiles,
-  getYamlFile,
-} = require('../../lib');
+const { buildModule } = require('../../tasks');
 
 class BuildModuleCommand extends Command {
   async run() {
@@ -25,14 +21,7 @@ class BuildModuleCommand extends Command {
     this.log(`📦 Module: ${c.blue(modulePath)}`);
 
     try {
-      // Get the module
-      const mod = await getYamlFile(modulePath);
-
-      // Get the library objects
-      const libraryFiles = await getLibraryFiles(libraryDirectory);
-
-      // Attach the children to the object
-      mod.checkpoints = await expandModuleCheckpoints(mod, libraryFiles);
+      const mod = await buildModule(modulePath, libraryDirectory);
 
       // Just log for now
       this.log(mod);
