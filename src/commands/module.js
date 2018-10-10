@@ -45,10 +45,8 @@ class ModuleCommand extends Command {
   }
 }
 
-ModuleCommand.description = `Generate a module 
-This function looks at all the \`content.md\` files in the library directory and
-all \`.yaml\` files in the module and program directories and adds a new uuid
-to any file without one.
+ModuleCommand.description = `Build a module 
+Loads a module's \`.yaml\` file and adds checkpoint objects from the library.
 `;
 
 ModuleCommand.flags = {
