@@ -58,13 +58,13 @@ DESCRIPTION
 
 _See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/uuids.js)_
 
-## `zapdos module`
+## `zapdos build:module`
 
 Generate a module
 
 ```
 USAGE
-  $ zapdos module --name [name]
+  $ zapdos build:module --name [name]
 
 OPTIONS
   -l, --libraryDir=libraryDir  [default: library] Directory containing library
@@ -75,7 +75,7 @@ DESCRIPTION
   Loads a module's \`.yaml\` file and adds checkpoint objects from the library.
 ```
 
-_See code: [src/commands/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/module.js)_
+_See code: [src/commands/build/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/build/module.js)_
 
 ## `zapdos help [COMMAND]`
 
