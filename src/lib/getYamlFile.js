@@ -18,6 +18,9 @@ module.exports = async filePath => {
       src: getSrc(filePath),
     };
   } catch (error) {
-    throw new Error(`Could not parse file at ${c.red(filePath)}:\n${error}`);
+    const errorMsg = `${
+      error.code === 'ENOENT' ? 'No file at path' : 'Could not parse file at '
+    } ${c.red(filePath)}:\n${error}`;
+    throw new Error(errorMsg);
   }
 };

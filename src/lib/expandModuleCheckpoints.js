@@ -9,7 +9,11 @@ module.exports = async (module, libraryFiles) => {
 
     // Error if child not found
     if (!child) {
-      throw new Error(`No content found with src "${src}"`);
+      const errorMsg =
+        `Checkpoint "${src}" for Module "${module.src}" not found. ` +
+        `Does the \`${src}\` directory exist in the library ` +
+        `and have a \`content.md\`?`;
+      throw new Error(errorMsg);
     }
 
     chekpoints.push(child);
