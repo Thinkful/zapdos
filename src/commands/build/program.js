@@ -20,7 +20,7 @@ class BuildProgramCommand extends Command {
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
     this.log(`📦 Modules: ${c.blue(modulesDirectory)}`);
-    this.log(`📦 Modules: ${c.blue(programPath)}`);
+    this.log(`🏔  Program: ${c.blue(programPath)}`);
 
     try {
       const program = await buildProgram(
