@@ -11,11 +11,17 @@ module.exports = async filePath => {
     // Read the file markdown
     const fileRaw = await fs.readFile(filePath, 'utf8');
 
+    // Ensure the src can be matched so content can be referenced from parent
+    const src = getSrc(filePath);
+    if (!src) {
+      throw new Error(`Could not parse src with regex ${SRC_REGEX}`);
+    }
+
     // Add path and src to the data
     return {
       ...yaml.load(fileRaw),
       path: filePath,
-      src: getSrc(filePath),
+      src,
     };
   } catch (error) {
     const errorMsg = `${

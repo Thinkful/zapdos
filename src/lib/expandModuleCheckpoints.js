@@ -3,9 +3,11 @@ const _ = require('lodash');
 module.exports = async (module, libraryFiles) => {
   const chekpoints = [];
 
+  const libraryFilesBySrc = _.keyBy(libraryFiles, 'src');
+
   for (const src of module.checkpoints) {
-    // Look for the child
-    const child = _.find(libraryFiles, { src });
+    // Get the content object from the map
+    const child = libraryFilesBySrc[src];
 
     // Error if child not found
     if (!child) {
