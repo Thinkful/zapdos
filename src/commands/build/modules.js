@@ -6,36 +6,48 @@ const c = require('ansi-colors');
 const {
   expandModuleCheckpoints,
   getLibraryFiles,
-  getYamlFile,
+  getYamlFiles,
 } = require('../../lib');
 
-class BuildModuleCommand extends Command {
+class BuildModulesCommand extends Command {
   async run() {
     const {
-      flags: { libraryDir, modulesDir, name },
-    } = this.parse(BuildModuleCommand);
+      flags: { libraryDir, modulesDir },
+    } = this.parse(BuildModulesCommand);
 
     const cwd = process.cwd();
     const libraryDirectory = path.resolve(cwd, libraryDir);
-    const modulePath = path.resolve(cwd, modulesDir, `${name}.yaml`);
+    const moduleDirectory = path.resolve(cwd, modulesDir);
 
-    this.log(`>> Building module "${name}"`);
+    this.log(`>> Building modules`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
-    this.log(`📦 Module: ${c.blue(modulePath)}`);
+    this.log(`📦 Modules: ${c.blue(moduleDirectory)}`);
 
     try {
       // Get the module
-      const module = await getYamlFile(modulePath);
+      const modules = await getYamlFiles(moduleDirectory);
+
+      this.log(
+        `>> Found ${modules.length} module${modules.length === 1 ? '' : 's'}:`
+      );
+      for (const module of modules) {
+        this.log(`>>   ${module.src}`);
+      }
 
       // Get the library objects
       const libraryFiles = await getLibraryFiles(libraryDirectory);
 
-      // Attach the children to the object
-      module.checkpoints = await expandModuleCheckpoints(module, libraryFiles);
+      for (const module of modules) {
+        // Attach the children to the object
+        module.checkpoints = await expandModuleCheckpoints(
+          module,
+          libraryFiles
+        );
+      }
 
       // Just log for now
-      this.log(module);
+      this.log(modules);
 
       this.log(c.green('✅ All done!'));
     } catch (error) {
@@ -45,11 +57,12 @@ class BuildModuleCommand extends Command {
   }
 }
 
-BuildModuleCommand.description = `Build a module 
-Loads a module's \`.yaml\` file and adds checkpoint objects from the library.
+BuildModulesCommand.description = `Build all modules
+Loads a all module \`.yaml\` files and add checkpoint objects from the library
+to them.
 `;
 
-BuildModuleCommand.flags = {
+BuildModulesCommand.flags = {
   libraryDir: flags.string({
     char: 'l',
     default: 'library',
@@ -60,11 +73,6 @@ BuildModuleCommand.flags = {
     default: 'modules',
     description: 'Directory containing module files',
   }),
-  name: flags.string({
-    char: 'n',
-    description: 'Name of module to build (eg [name] in /modules/[name].yaml)',
-    required: true,
-  }),
 };
 
-module.exports = BuildModuleCommand;
+module.exports = BuildModulesCommand;
