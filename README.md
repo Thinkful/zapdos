@@ -96,6 +96,30 @@ DESCRIPTION
 
 _See code: [src/commands/build/modules.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/build/modules.js)_
 
+## `zapdos build:program`
+
+Build a program
+
+```
+USAGE
+  $ zapdos build:program
+
+OPTIONS
+  -l, --libraryDir=libraryDir    [default: library] Directory containing library
+  -m, --modulesDir=modulesDir    [default: modules] Directory containing module files
+
+  -n, --name=name                (required) Name of program to build (eg [name] in
+                                 /programs/[name].yaml)
+
+  -p, --programsDir=programsDir  [default: programs] Directory containing program files
+
+DESCRIPTION
+  Loads a program's `.yaml` file and adds modules objects from the modules
+  directory and checkpoint objects from the library.
+```
+
+_See code: [src/commands/build/program.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/build/program.js)_
+
 ## `zapdos help [COMMAND]`
 
 display help for zapdos
