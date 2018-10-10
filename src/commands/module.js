@@ -3,7 +3,11 @@ const path = require('path');
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
-const { getLibraryFiles, getModuleChildren, getYamlFile } = require('../lib');
+const {
+  expandModuleCheckpoints,
+  getLibraryFiles,
+  getYamlFile,
+} = require('../lib');
 
 class ModuleCommand extends Command {
   async run() {
@@ -11,19 +15,27 @@ class ModuleCommand extends Command {
       flags: { libraryDir, modulesDir, name },
     } = this.parse(ModuleCommand);
 
-    const libraryPath = path.resolve(process.cwd(), libraryDir);
-    const modulePath = path.resolve(process.cwd(), modulesDir, `${name}.yaml`);
+    const cwd = process.cwd();
+    const libraryDirectory = path.resolve(cwd, libraryDir);
+    const modulePath = path.resolve(cwd, modulesDir, `${name}.yaml`);
+
+    this.log(`>> Building module "${name}"`);
+    this.log(`📍 cwd: ${c.blue(cwd)}`);
+    this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
+    this.log(`📦 Module: ${c.blue(modulePath)}`);
 
     // Get the module
     const module = await getYamlFile(modulePath);
 
     // Get the library objects
-    const libraryFiles = await getLibraryFiles(libraryPath);
+    const libraryFiles = await getLibraryFiles(libraryDirectory);
 
     // Attach the children to the object
-    module.children = await getModuleChildren(module, libraryFiles);
+    module.checkpoints = await expandModuleCheckpoints(module, libraryFiles);
 
     this.log(module);
+
+    this.log(c.green('✅ All done!'));
   }
 }
 

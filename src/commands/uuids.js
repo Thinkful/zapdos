@@ -1,3 +1,5 @@
+const path = require('path');
+
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
@@ -15,13 +17,13 @@ class UuidsCommand extends Command {
       flags: { libraryDir, modulesDir, programsDir, strict },
     } = this.parse(UuidsCommand);
 
-    const coloredMode = strict ? c.red('strict') : c.green('normal');
+    const coloredAction = strict ? c.red('Checking') : c.green('Creating');
     const cwd = process.cwd();
-    const libraryDirectory = `${cwd}/${libraryDir}`;
-    const modulesDirectory = `${cwd}/${modulesDir}`;
-    const programsDirectory = `${cwd}/${programsDir}`;
+    const libraryDirectory = path.resolve(cwd, libraryDir);
+    const modulesDirectory = path.resolve(cwd, modulesDir);
+    const programsDirectory = path.resolve(cwd, programsDir);
 
-    this.log(`>> Running in ${coloredMode} mode`);
+    this.log(`>> ${coloredAction} uuids`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
     this.log(`📦 Modules: ${c.blue(modulesDirectory)}`);

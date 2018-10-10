@@ -1,8 +1,8 @@
 module.exports = {
   createFileUuids: require('./createFileUuids'),
+  expandModuleCheckpoints: require('./expandModuleCheckpoints'),
   getLibraryFile: require('./getLibraryFile'),
   getLibraryFiles: require('./getLibraryFiles'),
-  getModuleChildren: require('./getModuleChildren'),
   getYamlFile: require('./getYamlFile'),
   getYamlFiles: require('./getYamlFiles'),
   setLibraryFiles: require('./setLibraryFiles'),

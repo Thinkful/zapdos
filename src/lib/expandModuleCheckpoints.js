@@ -1,8 +1,7 @@
 const _ = require('lodash');
 
 module.exports = async (module, libraryFiles) => {
-  console.log(module, libraryFiles);
-  const children = [];
+  const chekpoints = [];
 
   for (const src of module.checkpoints) {
     // Look for the child
@@ -13,8 +12,8 @@ module.exports = async (module, libraryFiles) => {
       throw new Error(`No content found with src "${src}"`);
     }
 
-    children.push(child);
+    chekpoints.push(child);
   }
 
-  return children;
+  return chekpoints;
 };
