@@ -26,16 +26,16 @@ class BuildModuleCommand extends Command {
 
     try {
       // Get the module
-      const module = await getYamlFile(modulePath);
+      const mod = await getYamlFile(modulePath);
 
       // Get the library objects
       const libraryFiles = await getLibraryFiles(libraryDirectory);
 
       // Attach the children to the object
-      module.checkpoints = await expandModuleCheckpoints(module, libraryFiles);
+      mod.checkpoints = await expandModuleCheckpoints(mod, libraryFiles);
 
       // Just log for now
-      this.log(module);
+      this.log(mod);
 
       this.log(c.green('✅ All done!'));
     } catch (error) {

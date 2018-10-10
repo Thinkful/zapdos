@@ -90,7 +90,7 @@ OPTIONS
   -m, --modulesDir=modulesDir  [default: modules] Directory containing module files
 
 DESCRIPTION
-  Loads a all module `.yaml` files and add checkpoint objects from the library
+  Loads all module `.yaml` files and add checkpoint objects from the library
   to them.
 ```
 
