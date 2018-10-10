@@ -4,35 +4,35 @@ const util = require('util');
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
-const { buildProgram } = require('../../tasks');
+const { buildPrograms } = require('../../tasks');
 
-class BuildProgramCommand extends Command {
+class BuildProgramsCommand extends Command {
   async run() {
     const {
       flags: { libraryDir, modulesDir, name, programsDir },
-    } = this.parse(BuildProgramCommand);
+    } = this.parse(BuildProgramsCommand);
 
     const cwd = process.cwd();
     const libraryDirectory = path.resolve(cwd, libraryDir);
     const modulesDirectory = path.resolve(cwd, modulesDir);
-    const programPath = path.resolve(cwd, programsDir, `${name}.yaml`);
+    const programsDirectory = path.resolve(cwd, programsDir);
 
-    this.log(`>> Building program "${name}"\n`);
+    this.log(`>> Building programs\n`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
     this.log(`📦 Modules: ${c.blue(modulesDirectory)}`);
-    this.log(`🏔  Program: ${c.blue(programPath)}\n`);
+    this.log(`🏔  Programs: ${c.blue(programsDirectory)}\n`);
 
     try {
-      const program = await buildProgram(
-        programPath,
+      const programs = await buildPrograms(
+        programsDirectory,
         modulesDirectory,
         libraryDirectory
       );
 
       // Just log for now
       this.log();
-      this.log(util.inspect(program, false, null, true));
+      this.log(util.inspect(programs, false, null, true));
 
       this.log(c.green('\n✅ All done!'));
     } catch (error) {
@@ -42,12 +42,12 @@ class BuildProgramCommand extends Command {
   }
 }
 
-BuildProgramCommand.description = `Build a program
-Loads a program's \`.yaml\` file and adds modules objects from the modules
-directory and checkpoint objects from the library.
+BuildProgramsCommand.description = `Build all programs
+Loads each program \`.yaml\` file and adds modules objects from the modules
+directory and checkpoint objects from the library to them.
 `;
 
-BuildProgramCommand.flags = {
+BuildProgramsCommand.flags = {
   libraryDir: flags.string({
     char: 'l',
     default: 'library',
@@ -58,12 +58,6 @@ BuildProgramCommand.flags = {
     default: 'modules',
     description: 'Directory containing module files',
   }),
-  name: flags.string({
-    char: 'n',
-    description:
-      'Name of program to build (eg [name] in /programs/[name].yaml)',
-    required: true,
-  }),
   programsDir: flags.string({
     char: 'p',
     default: 'programs',
@@ -71,4 +65,4 @@ BuildProgramCommand.flags = {
   }),
 };
 
-module.exports = BuildProgramCommand;
+module.exports = BuildProgramsCommand;
