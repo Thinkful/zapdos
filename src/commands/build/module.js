@@ -1,4 +1,5 @@
 const path = require('path');
+const util = require('util');
 
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
@@ -15,20 +16,21 @@ class BuildModuleCommand extends Command {
     const libraryDirectory = path.resolve(cwd, libraryDir);
     const modulePath = path.resolve(cwd, modulesDir, `${name}.yaml`);
 
-    this.log(`>> Building module "${name}"`);
+    this.log(`>> Building module "${name}"\n`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
-    this.log(`📦 Module: ${c.blue(modulePath)}`);
+    this.log(`📦 Module: ${c.blue(modulePath)}\n`);
 
     try {
       const mod = await buildModule(modulePath, libraryDirectory);
 
       // Just log for now
-      this.log(mod);
+      this.log();
+      this.log(util.inspect(mod, false, null, true));
 
-      this.log(c.green('✅ All done!'));
+      this.log(c.green('\n✅ All done!'));
     } catch (error) {
-      this.log(c.red('❌ Failed'));
+      this.log(c.red('\n❌ Failed'));
       this.error(error);
     }
   }
