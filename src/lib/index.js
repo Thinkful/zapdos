@@ -2,6 +2,7 @@ module.exports = {
   createFileUuids: require('./createFileUuids'),
   expandModuleCheckpoints: require('./expandModuleCheckpoints'),
   expandProgramModules: require('./expandProgramModules'),
+  getCurriculumFromModule: require('./getCurriculumFromModule'),
   getLibraryFile: require('./getLibraryFile'),
   getLibraryFiles: require('./getLibraryFiles'),
   getYamlFile: require('./getYamlFile'),

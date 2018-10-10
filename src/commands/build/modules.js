@@ -4,6 +4,7 @@ const util = require('util');
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
+const { getCurriculumFromModule } = require('../../lib');
 const { buildModules } = require('../../tasks');
 
 class BuildModulesCommand extends Command {
@@ -27,6 +28,13 @@ class BuildModulesCommand extends Command {
       // Just log for now
       this.log();
       this.log(util.inspect(mods, false, null, true));
+
+      this.log('\nCurricula:\n');
+
+      for (const mod of mods) {
+        this.log(util.inspect(getCurriculumFromModule(mod), false, null, true));
+        this.log();
+      }
 
       this.log(c.green('\n✅ All done!'));
     } catch (error) {
