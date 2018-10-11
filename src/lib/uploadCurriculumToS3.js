@@ -23,7 +23,7 @@ module.exports = mod => {
 
   const params = getParams(mod);
 
-  s3.putObject(getParams(mod), err => {
+  s3.putObject(params, err => {
     if (err) console.log(err, err.stack);
     else console.log(`Published module ${mod.src} to S3 as ${params.Key}`);
   });
