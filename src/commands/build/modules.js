@@ -45,7 +45,7 @@ class BuildModulesCommand extends Command {
 }
 
 BuildModulesCommand.description = `Build all modules
-Loads a all module \`.yaml\` files and add checkpoint objects from the library
+Loads a module's \`.yaml\` files and add checkpoint objects from the library
 to them.
 `;
 

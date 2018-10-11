@@ -3,4 +3,5 @@ module.exports = {
   buildModules: require('./buildModules'),
   buildProgram: require('./buildProgram'),
   buildPrograms: require('./buildPrograms'),
+  publishModule: require('./publishModule'),
 };

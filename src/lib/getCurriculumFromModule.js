@@ -1,10 +1,12 @@
+const processMarkdown = require('./processMarkdown');
+
 const getCurriclumCheckpointFromLibraryFile = libFile => ({
   type: 'checkpoint',
   children: null,
   src: libFile.src,
   uuid: libFile.attributes.uuid,
   content: {
-    body: '<p>Hello world</p>',
+    body: processMarkdown(libFile.body),
   },
   time: libFile.attributes.time,
   name: libFile.attributes.name || 'Unknown',
@@ -17,6 +19,7 @@ module.exports = modFile => ({
   name: modFile.name,
   id: modFile.code,
   code: modFile.code,
+  uuid: modFile.uuid,
   version: modFile.version || '1',
   content: { body: '' },
   author: modFile.author || 'Unknown',
