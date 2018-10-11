@@ -8,14 +8,16 @@ Content and program structure build tool for Thinkful
 [![License](https://img.shields.io/npm/l/@thinkful/zapdos.svg)](https://github.com/Thinkful/zapdos/blob/master/package.json)
 
 <!-- toc -->
-* [@thinkful/zapdos](#thinkful-zapdos)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [@thinkful/zapdos](#thinkful-zapdos)
+- [Usage](#usage)
+- [Commands](#commands)
+  <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @thinkful/zapdos
 $ zapdos COMMAND
@@ -27,22 +29,24 @@ USAGE
   $ zapdos COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`zapdos build:module`](#zapdos-buildmodule)
-* [`zapdos build:modules`](#zapdos-buildmodules)
-* [`zapdos build:program`](#zapdos-buildprogram)
-* [`zapdos build:programs`](#zapdos-buildprograms)
-* [`zapdos help [COMMAND]`](#zapdos-help-command)
-* [`zapdos publish:module`](#zapdos-publishmodule)
-* [`zapdos uuids`](#zapdos-uuids)
+
+- [`zapdos build:module`](#zapdos-buildmodule)
+- [`zapdos build:modules`](#zapdos-buildmodules)
+- [`zapdos build:program`](#zapdos-buildprogram)
+- [`zapdos build:programs`](#zapdos-buildprograms)
+- [`zapdos help [COMMAND]`](#zapdos-help-command)
+- [`zapdos publish:module`](#zapdos-publishmodule)
+- [`zapdos uuids`](#zapdos-uuids)
 
 ## `zapdos build:module`
 
-Build a module 
+Build a module
 
 ```
 USAGE
@@ -72,7 +76,7 @@ OPTIONS
   -m, --modulesDir=modulesDir  [default: modules] Directory containing module files
 
 DESCRIPTION
-  Loads a all module `.yaml` files and add checkpoint objects from the library
+  Loads a  module's `.yaml` files and add checkpoint objects from the library
   to them.
 ```
 
@@ -177,4 +181,5 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/uuids.js)_
+
 <!-- commandsstop -->
