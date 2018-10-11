@@ -21,7 +21,7 @@ $ npm install -g @thinkful/zapdos
 $ zapdos COMMAND
 running command...
 $ zapdos (-v|--version|version)
-@thinkful/zapdos/0.0.3 darwin-x64 node-v8.12.0
+@thinkful/zapdos/0.0.4 darwin-x64 node-v8.12.0
 $ zapdos --help [COMMAND]
 USAGE
   $ zapdos COMMAND
@@ -57,7 +57,7 @@ DESCRIPTION
   Loads a module's `.yaml` file and adds checkpoint objects from the library.
 ```
 
-_See code: [src/commands/build/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.3/src/commands/build/module.js)_
+_See code: [src/commands/build/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/build/module.js)_
 
 ## `zapdos build:modules`
 
@@ -76,7 +76,7 @@ DESCRIPTION
   to them.
 ```
 
-_See code: [src/commands/build/modules.js](https://github.com/Thinkful/zapdos/blob/v0.0.3/src/commands/build/modules.js)_
+_See code: [src/commands/build/modules.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/build/modules.js)_
 
 ## `zapdos build:program`
 
@@ -97,7 +97,7 @@ DESCRIPTION
   directory and checkpoint objects from the library.
 ```
 
-_See code: [src/commands/build/program.js](https://github.com/Thinkful/zapdos/blob/v0.0.3/src/commands/build/program.js)_
+_See code: [src/commands/build/program.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/build/program.js)_
 
 ## `zapdos build:programs`
 
@@ -117,7 +117,7 @@ DESCRIPTION
   directory and checkpoint objects from the library to them.
 ```
 
-_See code: [src/commands/build/programs.js](https://github.com/Thinkful/zapdos/blob/v0.0.3/src/commands/build/programs.js)_
+_See code: [src/commands/build/programs.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/build/programs.js)_
 
 ## `zapdos help [COMMAND]`
 
@@ -154,7 +154,7 @@ DESCRIPTION
   correct credentials are present.
 ```
 
-_See code: [src/commands/publish/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.3/src/commands/publish/module.js)_
+_See code: [src/commands/publish/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/publish/module.js)_
 
 ## `zapdos uuids`
 
@@ -176,5 +176,5 @@ DESCRIPTION
   to any file without one.
 ```
 
-_See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.3/src/commands/uuids.js)_
+_See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.4/src/commands/uuids.js)_
 <!-- commandsstop -->
