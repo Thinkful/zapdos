@@ -21,7 +21,10 @@ module.exports = mod => {
     Bucket: S3_BUCKET,
   });
 
-  s3.putObject(getParams(mod), err => {
+  const params = getParams(mod);
+
+  s3.putObject(params, err => {
     if (err) console.log(err, err.stack);
+    else console.log(`Published module ${mod.src} to S3 as ${params.Key}`);
   });
 };
