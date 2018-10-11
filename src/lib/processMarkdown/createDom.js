@@ -9,7 +9,5 @@ module.exports = function(xmlStr) {
     structure: xmlStr,
   });
 
-  // console.log(xmlStr);
-
   return jquery(new JSDOM(html).window);
 };
