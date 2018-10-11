@@ -1,5 +1,5 @@
 const getCurriclumCheckpointFromLibraryFile = libFile => ({
-  type: 'checkpoint',
+  type: 'assignment',
   children: null,
   src: libFile.src,
   uuid: libFile.attributes.uuid,
@@ -17,6 +17,7 @@ module.exports = modFile => ({
   name: modFile.name,
   id: modFile.code,
   code: modFile.code,
+  uuid: modFile.uuid,
   version: modFile.version || '1',
   content: { body: '' },
   author: modFile.author || 'Unknown',

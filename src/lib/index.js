@@ -9,4 +9,5 @@ module.exports = {
   getYamlFiles: require('./getYamlFiles'),
   setLibraryFiles: require('./setLibraryFiles'),
   setYamlFiles: require('./setYamlFiles'),
+  uploadCurriculumToS3: require('./uploadCurriculumToS3'),
 };
