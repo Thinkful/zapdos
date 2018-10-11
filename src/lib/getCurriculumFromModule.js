@@ -1,7 +1,7 @@
 const processMarkdown = require('./processMarkdown');
 
 const getCurriclumCheckpointFromLibraryFile = libFile => ({
-  type: 'assignment',
+  type: 'checkpoint',
   children: null,
   src: libFile.src,
   uuid: libFile.attributes.uuid,
