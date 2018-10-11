@@ -17,8 +17,12 @@
     "front-matter": "^3.0.0",
     "fs-extra": "^7.0.0",
     "globby": "^8.0.1",
+    "highlight.js": "^9.12.0",
+    "jquery": "^3.3.1",
     "js-yaml": "^3.12.0",
+    "jsdom": "^12.2.0",
     "lodash": "^4.17.11",
+    "marked": "^0.5.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -54,10 +58,6 @@
   },
   "repository": "Thinkful/zapdos",
   "scripts": {
-    "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
-    "posttest": "eslint .",
-    "prepack": "oclif-dev manifest && oclif-dev readme && npm shrinkwrap",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
     "version": "oclif-dev readme && git add README.md"
   }
 }

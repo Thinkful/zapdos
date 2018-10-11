@@ -1,10 +1,12 @@
+const processMarkdown = require('./processMarkdown');
+
 const getCurriclumCheckpointFromLibraryFile = libFile => ({
   type: 'assignment',
   children: null,
   src: libFile.src,
   uuid: libFile.attributes.uuid,
   content: {
-    body: '<p>Hello world</p>',
+    body: processMarkdown(libFile.body),
   },
   time: libFile.attributes.time,
   name: libFile.attributes.name || 'Unknown',
