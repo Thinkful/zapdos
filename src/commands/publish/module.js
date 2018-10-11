@@ -17,7 +17,7 @@ class PublishModuleCommand extends Command {
     const libraryDirectory = path.resolve(cwd, libraryDir);
     const modulePath = path.resolve(cwd, modulesDir, `${name}.yaml`);
 
-    this.log(`>> Building module "${name}"\n`);
+    this.log(`>> Publishing module "${name}"\n`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
     this.log(`📦 Module: ${c.blue(modulePath)}\n`);
@@ -40,8 +40,9 @@ class PublishModuleCommand extends Command {
   }
 }
 
-PublishModuleCommand.description = `Build a module 
-Loads a module's \`.yaml\` file and adds checkpoint objects from the library.
+PublishModuleCommand.description = `Publish a module as a curriculum
+Builds a module, transforms it to a curriculum, and uploads it to S3, if
+correct credentials are present.
 `;
 
 PublishModuleCommand.flags = {

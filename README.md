@@ -140,6 +140,26 @@ DESCRIPTION
 
 _See code: [src/commands/build/programs.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/build/programs.js)_
 
+## `zapdos publish:module`
+
+Publish a module as a curriculum
+
+```
+USAGE
+  $ zapdos publish:module
+
+OPTIONS
+  -l, --libraryDir=libraryDir  [default: library] Directory containing library
+  -m, --modulesDir=modulesDir  [default: modules] Directory containing module files
+  -n, --name=name              (required) Name of module to build (eg [name] in /modules/[name].yaml)
+
+DESCRIPTION
+  Builds a module, transforms it to a curriculum, and uploads it to S3, if
+  correct credentials are present.
+```
+
+_See code: [src/commands/publish/module.js](https://github.com/Thinkful/zapdos/blob/v0.0.1/src/commands/publish/module.js)_
+
 ## `zapdos help [COMMAND]`
 
 display help for zapdos
