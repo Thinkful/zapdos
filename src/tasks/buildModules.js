@@ -6,7 +6,12 @@ const {
   getYamlFiles,
 } = require('../lib');
 
+const createUuids = require('./createUuids');
+
 module.exports = async (moduleDirectory, libraryDirectory) => {
+  // Check the library and modules for uuids
+  createUuids(libraryDirectory, moduleDirectory, null, { strict: true });
+
   // Get the module
   const mods = await getYamlFiles(moduleDirectory);
 
