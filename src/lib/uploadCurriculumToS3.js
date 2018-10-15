@@ -3,13 +3,15 @@ const AWS = require('aws-sdk');
 
 const { S3_ACCESS_KEY, S3_BUCKET, S3_SECRET_KEY } = require('../config');
 
-const getKey = mod =>
-  `curricula/${mod.uuid}/${mod.code}/v${mod.version}/curriculum.json`;
+const getKey = curriculum =>
+  `curricula/${curriculum.uuid}/${curriculum.code}/v${
+    curriculum.version
+  }/curriculum.json`;
 
-const getParams = mod => ({
+const getParams = curriculum => ({
   Bucket: S3_BUCKET,
-  Key: getKey(mod),
-  Body: JSON.stringify(mod),
+  Key: getKey(curriculum),
+  Body: JSON.stringify(curriculum),
   ACL: 'public-read',
   ContentType: 'application/json',
 });
@@ -29,7 +31,7 @@ module.exports = curriculum => {
       if (err) reject(err);
       else {
         console.log(`Published curriculum ${c.green(params.Key)} to S3`);
-        resolve(mod);
+        resolve(curriculum);
       }
     });
   });

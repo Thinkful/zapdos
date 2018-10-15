@@ -3,13 +3,7 @@ const path = require('path');
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
-const {
-  createFileUuids,
-  getLibraryFiles,
-  getYamlFiles,
-  setLibraryFiles,
-  setYamlFiles,
-} = require('../lib');
+const { createUuids } = require('../tasks');
 
 class UuidsCommand extends Command {
   async run() {
@@ -22,6 +16,7 @@ class UuidsCommand extends Command {
     const libraryDirectory = path.resolve(cwd, libraryDir);
     const modulesDirectory = path.resolve(cwd, modulesDir);
     const programsDirectory = path.resolve(cwd, programsDir);
+    const options = { strict };
 
     this.log(`>> ${coloredAction} uuids`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
@@ -30,29 +25,12 @@ class UuidsCommand extends Command {
     this.log(`🏔 Programs: ${c.blue(programsDirectory)}`);
 
     try {
-      // Add uuids to library files
-      const libraryFiles = await getLibraryFiles(libraryDirectory);
-      const updatedLibraryFiles = await createFileUuids(libraryFiles, {
-        attributeName: 'attributes',
-        strict,
-      });
-
-      // Add uuids to module files
-      const moduleFiles = await getYamlFiles(modulesDirectory);
-      const updatedModuleFiles = await createFileUuids(moduleFiles, {
-        strict,
-      });
-
-      // Add uuids to program files
-      const programFiles = await getYamlFiles(programsDirectory);
-      const updatedProgramFiles = await createFileUuids(programFiles, {
-        strict,
-      });
-
-      // Replace all files. Do this after to ensure strict mode is observed
-      await setLibraryFiles(updatedLibraryFiles);
-      await setYamlFiles(updatedModuleFiles);
-      await setYamlFiles(updatedProgramFiles);
+      await createUuids(
+        libraryDirectory,
+        modulesDirectory,
+        programsDirectory,
+        options
+      );
 
       this.log(c.green('✅ All done!'));
     } catch (error) {
