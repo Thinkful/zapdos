@@ -14,7 +14,7 @@ module.exports = async (moduleDirectory, libraryDirectory) => {
     const curriculum = getCurriculumFromModule(mod);
     log(`Built curriculum for module "${mod.src}"`);
 
-    await uploadCurriculumToS3(curriculum);
+    await uploadCurriculumToS3(curriculum, libraryDirectory);
     log(c.green(`Published curriculum for module "${mod.src}"\n`));
   }
 

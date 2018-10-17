@@ -12,7 +12,7 @@ module.exports = async (moduleDirectory, libraryDirectory) => {
 
   log(`Found ${mods.length} module${mods.length === 1 ? '' : 's'}:`);
   for (const mod of mods) {
-    log(`  - ${mod.src}`);
+    log(`  - ${mod.src} (${mod.code})`);
   }
 
   // Get the library objects

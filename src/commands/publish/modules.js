@@ -33,7 +33,6 @@ class PublishModulesCommand extends Command {
 
       for (const mod of mods) {
         this.log(util.inspect(getCurriculumFromModule(mod), false, null, true));
-        this.log();
       }
 
       this.log(c.green('\n✅ All done!'));
