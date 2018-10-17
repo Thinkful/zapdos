@@ -1,9 +1,8 @@
 const c = require('ansi-colors');
-const { S3 } = require('aws-sdk');
 const log = require('fancy-log');
 const fs = require('fs-extra');
 
-const { S3_ACCESS_KEY, S3_BUCKET, S3_SECRET_KEY } = require('../config');
+const uploadToS3 = require('./uploadToS3');
 
 const getFileName = assetPath => {
   const parts = assetPath.split('/');
@@ -15,40 +14,17 @@ const getKey = (curriculum, assetPath) =>
     curriculum.version
   }/assets2/${getFileName(assetPath)}`;
 
-const getParams = (curriculum, assetPath, assetData) => ({
-  Bucket: S3_BUCKET,
-  Key: getKey(curriculum, assetPath),
-  Body: JSON.stringify(assetData),
-  ACL: 'public-read',
-});
-
 module.exports = async (curriculum, assetPath) => {
-  const s3 = new S3({
-    accessKeyId: S3_ACCESS_KEY,
-    secretAccessKey: S3_SECRET_KEY,
-    Bucket: S3_BUCKET,
-  });
+  // Get the params for S3
+  const key = getKey(curriculum, libraryPath);
+  const data = await fs.readFile(assetPath);
 
-  return new Promise(async (resolve, reject) => {
-    try {
-      const assetData = await fs.readFile(assetPath);
-
-      const params = getParams(curriculum, assetPath, assetData);
-
-      log(`Uploading ${assetPath} to ${params.Key}...`);
-
-      s3.putObject(params, error => {
-        if (error) {
-          log.error(`Problem uploading to s3 ${c.red(assetPath)}: ${error}`);
-          reject(error);
-        } else {
-          log(`Uploaded ${c.green(assetPath)} to ${c.green(params).Key}`);
-          resolve(assetPath);
-        }
-      });
-    } catch (error) {
-      log.error(`Problem uploading to S3 ${c.red(assetPath)}: ${error}`);
-      reject(error);
-    }
-  });
+  // Attempt to upload
+  try {
+    await uploadToS3(key, data);
+    log(`Uploaded asset ${c.green(key)} to S3`);
+  } catch (error) {
+    log.error(`Failed to upload asset ${c.red(key)} to S3: ${error}`);
+    throw error;
+  }
 };
