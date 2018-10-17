@@ -1,5 +1,7 @@
 const _ = require('lodash');
 
+const validateCheckpoint = require('./validateCheckpoint');
+
 module.exports = async (module, libraryFiles) => {
   const chekpoints = [];
 
@@ -7,10 +9,10 @@ module.exports = async (module, libraryFiles) => {
 
   for (const src of module.checkpoints) {
     // Get the content object from the map
-    const child = libraryFilesBySrc[src];
+    const checkpoint = libraryFilesBySrc[src];
 
-    // Error if child not found
-    if (!child) {
+    // Error if checkpoint not found
+    if (!checkpoint) {
       const errorMsg =
         `Checkpoint "${src}" for Module "${module.src}" not found. ` +
         `Does the \`${src}\` directory exist in the library ` +
@@ -18,7 +20,10 @@ module.exports = async (module, libraryFiles) => {
       throw new Error(errorMsg);
     }
 
-    chekpoints.push(child);
+    // Ensure the checkpoint is valid
+    await validateCheckpoint(checkpoint);
+
+    chekpoints.push(checkpoint);
   }
 
   return chekpoints;
