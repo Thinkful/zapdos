@@ -20,6 +20,6 @@ module.exports = async curriculum => {
     log(`Published curriculum ${c.green(key)} to S3`);
   } catch (error) {
     log.error(`Failed to publish ${c.red(key)} to S3: ${error}`);
-    throw erorr;
+    throw error;
   }
 };

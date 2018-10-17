@@ -16,7 +16,7 @@ const getKey = (curriculum, assetPath) =>
 
 module.exports = async (curriculum, assetPath) => {
   // Get the params for S3
-  const key = getKey(curriculum, libraryPath);
+  const key = getKey(curriculum, assetPath);
   const data = await fs.readFile(assetPath);
 
   // Attempt to upload

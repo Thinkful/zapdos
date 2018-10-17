@@ -10,7 +10,6 @@ const ASSET_EXTENSIONS = [
   'jpg',
   'jpeg',
   'json',
-  'jpeg',
   'm4a',
   'mov',
   'mp3',
@@ -31,13 +30,19 @@ const ASSET_EXTENSIONS = [
   'zip',
 ];
 
-const getAssetPathPattern = (curriculum, libraryDirectory) =>
-  `${libraryDirectory}/(${curriculum.children
-    .map(checkpoint => checkpoint.src)
-    .join('|')})/*.(${ASSET_EXTENSIONS.join('|')})`;
+const getCheckpointAssetPathPattern = (child, libraryDirectory) =>
+  `${libraryDirectory}/${child.src}/*.(${ASSET_EXTENSIONS.join('|')})`;
 
 const getAssetPaths = async (curriculum, libraryDirectory) => {
-  const paths = await globby(getAssetPathPattern(curriculum, libraryDirectory));
+  let paths = [];
+
+  for (const child in curriculum.children) {
+    const childPaths = await globby(
+      getCheckpointAssetPathPattern(child, libraryDirectory)
+    );
+    paths = paths.concat(childPaths);
+  }
+
   return paths;
 };
 
@@ -47,18 +52,10 @@ module.exports = async (curriculum, libraryDirectory) => {
   log(
     `Found ${assetPaths.length} asset${
       assetPaths.length === 1 ? '' : 's'
-    } for Curriculum ${curriculum.code}:`
+    } for Curriculum ${curriculum.code}`
   );
 
-  return new Promise(async (resolve, reject) => {
-    try {
-      for (const assetPath of assetPaths) {
-        await uploadCurriculumAssetToS3(curriculum, assetPath);
-      }
-
-      resolve(assetPaths);
-    } catch (error) {
-      reject(error);
-    }
-  });
+  for (const assetPath of assetPaths) {
+    await uploadCurriculumAssetToS3(curriculum, assetPath);
+  }
 };
