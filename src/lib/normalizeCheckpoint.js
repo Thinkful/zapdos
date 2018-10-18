@@ -9,11 +9,16 @@ module.exports = async checkpoint => {
   checkpoint.attributes = Object.assign(
     {
       // Alias name to title if not set
-      title: checkpoint.attributes.name,
+      title: checkpoint.attributes.name || 'Checkpoint',
     },
     DEFAULT_ATTRIBUTES,
     checkpoint.attributes
   );
+
+  // Delete `name` if it's present (use `title` instead)
+  if (checkpoint.attributes.name) {
+    delete checkpoint.attributes.name;
+  }
 
   return checkpoint;
 };
