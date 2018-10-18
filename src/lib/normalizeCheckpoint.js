@@ -1,5 +1,5 @@
 const DEFAULT_ATTRIBUTES = {
-  author: 'Unknown author',
+  author: 'Thinkful',
   team: 'grading',
   type: 'graded',
 };
