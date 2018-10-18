@@ -23,9 +23,12 @@ module.exports = async filePath => {
       throw new Error(`Could not parse src with regex ${SRC_REGEX}`);
     }
 
+    // Normalize structure and attributes
+    const checkpoint = await normalizeCheckpoint(frontMatter(fileCleaned));
+
     // Create a lightweight object with path and data
     return {
-      ...normalizeCheckpoint(frontMatter(fileCleaned)),
+      ...checkpoint,
       path: filePath,
       src,
     };
