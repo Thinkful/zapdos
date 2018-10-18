@@ -2,6 +2,8 @@ const c = require('ansi-colors');
 const frontMatter = require('front-matter');
 const fs = require('fs-extra');
 
+const normalizeCheckpoint = require('./normalizeCheckpoint');
+
 const SRC_REGEX = /\/([a-z0-9\.\_\+\-]+)\/content\.md$/i;
 
 const getSrc = filePath => filePath.match(SRC_REGEX)[1];
@@ -21,9 +23,12 @@ module.exports = async filePath => {
       throw new Error(`Could not parse src with regex ${SRC_REGEX}`);
     }
 
+    // Normalize structure and attributes
+    const checkpoint = await normalizeCheckpoint(frontMatter(fileCleaned));
+
     // Create a lightweight object with path and data
     return {
-      ...frontMatter(fileCleaned),
+      ...checkpoint,
       path: filePath,
       src,
     };
