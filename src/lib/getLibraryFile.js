@@ -2,6 +2,8 @@ const c = require('ansi-colors');
 const frontMatter = require('front-matter');
 const fs = require('fs-extra');
 
+const normalizeCheckpoint = require('./normalizeCheckpoint');
+
 const SRC_REGEX = /\/([a-z0-9\.\_\+\-]+)\/content\.md$/i;
 
 const getSrc = filePath => filePath.match(SRC_REGEX)[1];
@@ -23,7 +25,7 @@ module.exports = async filePath => {
 
     // Create a lightweight object with path and data
     return {
-      ...frontMatter(fileCleaned),
+      ...normalizeCheckpoint(frontMatter(fileCleaned)),
       path: filePath,
       src,
     };
