@@ -1,13 +1,8 @@
-const globby = require('globby');
-
 const getYamlFile = require('./getYamlFile');
+const getYamlFilePaths = require('./getYamlFilePaths');
 
 module.exports = async targetDirectory => {
-  // Create the pattern for finding all content files
-  const globPattern = `${targetDirectory}/*.yaml`;
-
-  // Get all file paths matching the pattern
-  const filePaths = await globby(globPattern);
+  const filePaths = await getYamlFilePaths(targetDirectory);
 
   const fileObjects = [];
 

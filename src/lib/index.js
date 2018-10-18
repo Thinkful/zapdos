@@ -10,4 +10,6 @@ module.exports = {
   setLibraryFiles: require('./setLibraryFiles'),
   setYamlFiles: require('./setYamlFiles'),
   uploadCurriculumToS3: require('./uploadCurriculumToS3'),
+  validateCheckpoint: require('./validateCheckpoint'),
+  validateModule: require('./validateModule'),
 };
