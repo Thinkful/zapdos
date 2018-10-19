@@ -1,7 +1,7 @@
 {
   "name": "@thinkful/zapdos",
   "description": "Content and program structure build tool for Thinkfu",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author": "ripleyaffect @ripleyaffect",
   "bin": {
     "zapdos": "./bin/run"
