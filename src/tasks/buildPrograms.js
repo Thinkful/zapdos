@@ -1,6 +1,10 @@
 const log = require('fancy-log');
 
-const { expandProgramModules, getYamlFiles } = require('../lib');
+const {
+  expandProgramModules,
+  getYamlFiles,
+  validateProgram,
+} = require('../lib');
 
 const buildModules = require('./buildModules');
 
@@ -17,6 +21,11 @@ module.exports = async (
     log(`  - ${program.src}`);
   }
   log();
+
+  // Check all the programs are valid
+  for (const program of programs) {
+    await validateProgram(program);
+  }
 
   // Get the library objects
   const moduleFiles = await buildModules(moduleDirectory, libraryDirectory);

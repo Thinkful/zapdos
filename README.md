@@ -8,14 +8,16 @@ Content and program structure build tool for Thinkful
 [![License](https://img.shields.io/npm/l/@thinkful/zapdos.svg)](https://github.com/Thinkful/zapdos/blob/master/package.json)
 
 <!-- toc -->
-* [@thinkful/zapdos](#thinkful-zapdos)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [@thinkful/zapdos](#thinkful-zapdos)
+- [Usage](#usage)
+- [Commands](#commands)
+  <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @thinkful/zapdos
 $ zapdos COMMAND
@@ -27,23 +29,26 @@ USAGE
   $ zapdos COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`zapdos build:module`](#zapdos-buildmodule)
-* [`zapdos build:modules`](#zapdos-buildmodules)
-* [`zapdos build:program`](#zapdos-buildprogram)
-* [`zapdos build:programs`](#zapdos-buildprograms)
-* [`zapdos help [COMMAND]`](#zapdos-help-command)
-* [`zapdos publish:module`](#zapdos-publishmodule)
-* [`zapdos publish:modules`](#zapdos-publishmodules)
-* [`zapdos uuids`](#zapdos-uuids)
+
+- [`zapdos build:module`](#zapdos-buildmodule)
+- [`zapdos build:modules`](#zapdos-buildmodules)
+- [`zapdos build:program`](#zapdos-buildprogram)
+- [`zapdos build:programs`](#zapdos-buildprograms)
+- [`zapdos help [COMMAND]`](#zapdos-help-command)
+- [`zapdos publish:module`](#zapdos-publishmodule)
+- [`zapdos publish:modules`](#zapdos-publishmodules)
+- [`zapdos publish:programs`](#zapdos-publishprograms)
+- [`zapdos uuids`](#zapdos-uuids)
 
 ## `zapdos build:module`
 
-Build a module 
+Build a module
 
 ```
 USAGE
@@ -176,6 +181,26 @@ DESCRIPTION
 
 _See code: [src/commands/publish/modules.js](https://github.com/Thinkful/zapdos/blob/v0.0.6/src/commands/publish/modules.js)_
 
+## `zapdos publish:programs`
+
+Publish all programs
+
+```
+USAGE
+  $ zapdos publish:programs
+
+OPTIONS
+  -l, --libraryDir=libraryDir    [default: library] Directory containing library
+  -m, --modulesDir=modulesDir    [default: modules] Directory containing module files
+  -p, --programsDir=programsDir  [default: programs] Directory containing program files
+
+DESCRIPTION
+  Publishes all modules to S3, then posts the structure of each program to
+  the server
+```
+
+_See code: [src/commands/publish/programs.js](https://github.com/Thinkful/zapdos/blob/v0.0.6/src/commands/publish/programs.js)_
+
 ## `zapdos uuids`
 
 Generate uuids for checkpoints, modules, and programs.
@@ -197,4 +222,5 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/uuids.js](https://github.com/Thinkful/zapdos/blob/v0.0.6/src/commands/uuids.js)_
+
 <!-- commandsstop -->
