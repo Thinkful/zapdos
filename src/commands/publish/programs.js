@@ -4,27 +4,27 @@ const util = require('util');
 const { Command, flags } = require('@oclif/command');
 const c = require('ansi-colors');
 
-const { buildPrograms } = require('../../tasks');
+const { publishPrograms } = require('../../tasks');
 
-class BuildProgramsCommand extends Command {
+class PublishProgramsCommand extends Command {
   async run() {
     const {
       flags: { libraryDir, modulesDir, programsDir },
-    } = this.parse(BuildProgramsCommand);
+    } = this.parse(PublishProgramsCommand);
 
     const cwd = process.cwd();
     const libraryDirectory = path.resolve(cwd, libraryDir);
     const modulesDirectory = path.resolve(cwd, modulesDir);
     const programsDirectory = path.resolve(cwd, programsDir);
 
-    this.log(`>> Building programs\n`);
+    this.log(`>> Publishing all programs\n`);
     this.log(`📍 cwd: ${c.blue(cwd)}`);
     this.log(`📚 Library: ${c.blue(libraryDirectory)}`);
     this.log(`📦 Modules: ${c.blue(modulesDirectory)}`);
-    this.log(`🏔  Programs: ${c.blue(programsDirectory)}\n`);
+    this.log(`🏔 Programs: ${c.blue(programsDirectory)}\n`);
 
     try {
-      const programs = await buildPrograms(
+      const programs = await publishPrograms(
         programsDirectory,
         modulesDirectory,
         libraryDirectory
@@ -42,12 +42,12 @@ class BuildProgramsCommand extends Command {
   }
 }
 
-BuildProgramsCommand.description = `Build all programs
-Loads each program \`.yaml\` file and adds modules objects from the modules
-directory and checkpoint objects from the library to them.
+PublishProgramsCommand.description = `Publish all programs
+Publishes all modules to S3, then posts the structure of each program to
+the server
 `;
 
-BuildProgramsCommand.flags = {
+PublishProgramsCommand.flags = {
   libraryDir: flags.string({
     char: 'l',
     default: 'library',
@@ -65,4 +65,4 @@ BuildProgramsCommand.flags = {
   }),
 };
 
-module.exports = BuildProgramsCommand;
+module.exports = PublishProgramsCommand;

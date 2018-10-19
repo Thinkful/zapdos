@@ -3,6 +3,10 @@ const DEPLOY_SERVER =
 
 // Pull from different env vars based on branch
 module.exports = {
+  PROGRAM_STRUCTURES_AUTH_TOKEN:
+    process.env[`${DEPLOY_SERVER}_PROGRAM_STRUCTURES_AUTH_TOKEN`],
+  PROGRAM_STRUCTURES_URL:
+    process.env[`${DEPLOY_SERVER}_PROGRAM_STRUCTURES_URL`],
   S3_ACCESS_KEY: process.env[`S3_${DEPLOY_SERVER}_ACCESS_KEY`],
   S3_BUCKET: process.env[`S3_${DEPLOY_SERVER}_BUCKET`],
   S3_SECRET_KEY: process.env[`S3_${DEPLOY_SERVER}_SECRET_KEY`],
