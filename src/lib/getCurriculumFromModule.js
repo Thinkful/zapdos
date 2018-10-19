@@ -9,7 +9,7 @@ const getCurriclumCheckpointFromLibraryFile = libFile => ({
     body: processMarkdown(libFile.body),
   },
   time: libFile.attributes.time,
-  name: libFile.attributes.name || 'Unknown',
+  name: libFile.attributes.title || 'Unknown',
   author: libFile.attributes.author || 'Unknown',
 });
 
