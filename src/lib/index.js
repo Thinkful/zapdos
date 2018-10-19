@@ -13,4 +13,5 @@ module.exports = {
   uploadCurriculumToS3: require('./uploadCurriculumToS3'),
   validateCheckpoint: require('./validateCheckpoint'),
   validateModule: require('./validateModule'),
+  validateProgram: require('./validateProgram'),
 };
