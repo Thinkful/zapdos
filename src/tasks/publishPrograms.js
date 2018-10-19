@@ -8,15 +8,16 @@ module.exports = async (
   moduleDirectory,
   libraryDirectory
 ) => {
-  // Publish all modules
-  await publishModules(moduleDirectory, libraryDirectory);
-
-  // Get all programs to publish
+  // Get all programs to publish.
+  // We do this before publishing modules to check for build errors
   const programs = await buildPrograms(
     programDirectory,
     moduleDirectory,
     libraryDirectory
   );
+
+  // Publish all modules
+  await publishModules(moduleDirectory, libraryDirectory);
 
   // Post all the program structures
   for (program of programs) {
