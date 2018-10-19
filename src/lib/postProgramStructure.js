@@ -8,9 +8,19 @@ const {
 
 module.exports = async program => {
   try {
+    if (!PROGRAM_STRUCTURES_URL) {
+      throw new Error(
+        'PROGRAM_STRUCTURES_URL missing for this environment. Check enviroment'
+      );
+    }
+
     response = await axios.post(PROGRAM_STRUCTURES_URL, program, {
-      token: PROGRAM_STRUCTURES_AUTH_TOKEN,
+      params: { token: PROGRAM_STRUCTURES_AUTH_TOKEN },
     });
+
+    log(
+      `Successfully posted program with code ${program.code}: ${response.data}`
+    );
 
     return response.data;
   } catch (error) {
