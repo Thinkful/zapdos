@@ -14,12 +14,20 @@ module.exports = async program => {
       );
     }
 
+    log(
+      `Posting program with code ${program.code} (${
+        program.uuid
+      }) to ${PROGRAM_STRUCTURES_URL}`
+    );
+
     response = await axios.post(PROGRAM_STRUCTURES_URL, program, {
       params: { token: PROGRAM_STRUCTURES_AUTH_TOKEN },
     });
 
     log(
-      `Successfully posted program with code ${program.code}: ${response.data}`
+      `Successfully posted program with code ${
+        program.code
+      } to ${PROGRAM_STRUCTURES_URL}: ${response.data}`
     );
 
     return response.data;
