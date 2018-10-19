@@ -16,7 +16,7 @@ module.exports = async (moduleDirectory, libraryDirectory) => {
     log(`  - ${mod.src} (${mod.code})`);
   }
 
-  // Validate the modules
+  // Check all the modules are valid
   for (const mod of mods) {
     await validateModule(mod);
   }

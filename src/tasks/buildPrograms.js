@@ -22,6 +22,7 @@ module.exports = async (
   }
   log();
 
+  // Check all the programs are valid
   for (const program of programs) {
     await validateProgram(program);
   }

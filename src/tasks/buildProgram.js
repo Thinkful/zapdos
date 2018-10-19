@@ -1,10 +1,17 @@
-const { expandProgramModules, getYamlFile } = require('../lib');
+const {
+  expandProgramModules,
+  getYamlFile,
+  validateProgram,
+} = require('../lib');
 
 const buildModules = require('./buildModules');
 
 module.exports = async (programPath, moduleDirectory, libraryDirectory) => {
   // Get the module
   const program = await getYamlFile(programPath);
+
+  // Check the program is valid
+  await validateProgram(program);
 
   // Get the library objects
   const moduleFiles = await buildModules(moduleDirectory, libraryDirectory);
