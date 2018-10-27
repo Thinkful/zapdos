@@ -20,5 +20,10 @@ module.exports = async checkpoint => {
     delete checkpoint.attributes.name;
   }
 
+  // Delete `type` if it's present (maintained w/ another tool)
+  if (checkpoint.attributes.type) {
+    delete checkpoint.attributes.type;
+  }
+
   return checkpoint;
 };
