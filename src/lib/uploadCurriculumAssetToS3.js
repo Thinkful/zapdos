@@ -4,15 +4,15 @@ const fs = require('fs-extra');
 
 const uploadToS3 = require('./uploadToS3');
 
-const getFileName = assetPath => {
+const getFilePath = assetPath => {
   const parts = assetPath.split('/');
-  return parts[parts.length - 1];
+  return parts.slice(-2).join('/');
 };
 
 const getKey = (curriculum, assetPath) =>
   `curricula/${curriculum.uuid}/${curriculum.code}/v${
     curriculum.version
-  }/assets2/${getFileName(assetPath)}`;
+  }/assets2/${getFilePath(assetPath)}`;
 
 module.exports = async (curriculum, assetPath) => {
   // Get the params for S3

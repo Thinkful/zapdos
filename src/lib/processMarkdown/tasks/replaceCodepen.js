@@ -4,7 +4,7 @@ const log = require('fancy-log');
 
 const { getIframe } = require('../utils');
 
-const codepenChain = ($, el) => {
+const codepenEach = ($, el) => {
   const source =
     `//codepen.io/team/thinkful/embed/` +
     `${$(el).attr('source')}?height="440"&theme-id=9607`;
@@ -15,7 +15,7 @@ const codepenChain = ($, el) => {
 };
 
 module.exports = $ => {
-  _.chain($('codepen[source]')).each(el => codepenChain($, el));
+  $('codepen[source]').each(el => codepenEach($, el));
 
   const rogueCodepen = $('codepen').first();
 
