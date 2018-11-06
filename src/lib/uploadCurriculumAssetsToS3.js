@@ -36,7 +36,7 @@ const getCheckpointAssetPathPattern = (child, libraryDirectory) =>
 const getAssetPaths = async (curriculum, libraryDirectory) => {
   let paths = [];
 
-  for (const child in curriculum.children) {
+  for (const child of curriculum.children) {
     const childPaths = await globby(
       getCheckpointAssetPathPattern(child, libraryDirectory)
     );

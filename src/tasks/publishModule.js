@@ -1,3 +1,5 @@
+const log = require('fancy-log');
+
 const { getCurriculumFromModule, uploadCurriculumToS3 } = require('../lib');
 
 const buildModule = require('./buildModule');

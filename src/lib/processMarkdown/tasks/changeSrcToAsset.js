@@ -7,9 +7,9 @@ const _ = require('lodash');
  *    name before populating the src attribute.
  */
 module.exports = $ => {
-  _.chain($('[src]'))
-    .reject(el => /^(https?)?:?\/\//i.test(el.getAttribute('src')))
-    .each(el => {
+  _($('[src]'))
+    .filter(el => !/^(https?)?:?\/\//i.test(el.getAttribute('src')))
+    .forEach(el => {
       el.setAttribute('asset', el.getAttribute('src'));
       el.removeAttribute('src');
     });
