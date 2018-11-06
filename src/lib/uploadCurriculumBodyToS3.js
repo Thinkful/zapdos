@@ -4,9 +4,7 @@ const log = require('fancy-log');
 const uploadToS3 = require('./uploadToS3');
 
 const getKey = curriculum =>
-  `curricula/${curriculum.uuid}/${curriculum.code}/v${
-    curriculum.version
-  }/curriculum.json`;
+  `curricula/${curriculum.uuid}/${curriculum.id}/curriculum.json`;
 
 module.exports = async curriculum => {
   // Get the params for S3

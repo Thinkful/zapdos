@@ -1,6 +1,6 @@
 const log = require('fancy-log');
 
-const { getCurriculumFromModule, uploadCurriculumToS3 } = require('../lib');
+const { getCurriculumFromModule, publishCurriculum } = require('../lib');
 
 const buildModule = require('./buildModule');
 
@@ -12,7 +12,7 @@ module.exports = async (modulePath, libraryDirectory) => {
   const curriculum = getCurriculumFromModule(mod);
   log(`Built curriculum for module "${mod.src}"`);
 
-  await uploadCurriculumToS3(curriculum, libraryDirectory);
+  await publishCurriculum(curriculum, libraryDirectory);
   log(`Published curriculum for module "${mod.src}"`);
 
   return mod;

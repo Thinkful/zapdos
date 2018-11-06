@@ -8,6 +8,7 @@ module.exports = {
   getYamlFile: require('./getYamlFile'),
   getYamlFiles: require('./getYamlFiles'),
   postProgramStructure: require('./postProgramStructure'),
+  publishCurriculum: require('./publishCurriculum'),
   setLibraryFiles: require('./setLibraryFiles'),
   setYamlFiles: require('./setYamlFiles'),
   uploadCurriculumToS3: require('./uploadCurriculumToS3'),
