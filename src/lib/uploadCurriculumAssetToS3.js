@@ -10,9 +10,9 @@ const getFilePath = assetPath => {
 };
 
 const getKey = (curriculum, assetPath) =>
-  `curricula/${curriculum.uuid}/${curriculum.code}/v${
-    curriculum.version
-  }/assets2/${getFilePath(assetPath)}`;
+  `curricula/${curriculum.uuid}/${curriculum.id}/assets2/${getFilePath(
+    assetPath
+  )}`;
 
 module.exports = async (curriculum, assetPath) => {
   // Get the params for S3
