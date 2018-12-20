@@ -18,7 +18,7 @@ module.exports = async (moduleDirectory, libraryDirectory) => {
 
   // Check all the modules are valid
   for (const mod of mods) {
-    await validateModule(mod);
+    await validateModule(mod, mods);
   }
 
   // Get the library objects
