@@ -9,9 +9,10 @@ const {
 module.exports = async program => {
   try {
     if (!PROGRAM_STRUCTURES_URL) {
-      throw new Error(
+      log.error(
         'PROGRAM_STRUCTURES_URL missing for this environment. Check enviroment'
       );
+      return;
     }
 
     log(
