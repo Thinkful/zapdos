@@ -7,22 +7,23 @@ module.exports = async (checkpoint, checkpoints = null) => {
   // Fallback to this checkpoint
   checkpoints = checkpoints || [checkpoint];
 
-  let error = null;
+  let errors = [];
 
   // Check for missing uuid
   if (!checkpoint.attributes.uuid) {
-    error = `CHECKPOINT_INVALID: Checkpoint "${
-      checkpoint.src
-    }" has no uuid. Run uuids command`;
+    const error =
+      `CHECKPOINT_INVALID: Checkpoint "${checkpoint.src}" ` +
+      `has no uuid. Run uuids command`;
+    errors.push(error);
   }
 
   // Check for valid team
   if (VALID_TEAM_VALUES.indexOf(checkpoint.attributes.team) === -1) {
-    error = `CHECKPOINT_INVALID: Checkpoint ${
-      checkpoint.src
-    } has invalid team "${
-      checkpoint.attributes.team
-    }". Valid team values: ${VALID_TEAM_VALUES}`;
+    const error =
+      `CHECKPOINT_INVALID: Checkpoint ${checkpoint.src} ` +
+      `has invalid team "${checkpoint.attributes.team}". ` +
+      `Valid team values: ${VALID_TEAM_VALUES}`;
+    errors.push(error);
   }
 
   // Check for a unique uuid
@@ -30,13 +31,14 @@ module.exports = async (checkpoint, checkpoints = null) => {
     cp => cp.attributes.uuid === checkpoint.attributes.uuid
   );
   if (checkpointsWithUuid.length > 1) {
-    error =
+    const error =
       `CHECKPOINT_INVALID: ${checkpointsWithUuid.length} ` +
       `checkpoints found with uuid "${checkpoint.attributes.uuid}": ` +
       `${formatDuplicates(checkpointsWithUuid)} - Expected 1`;
+    errors.push(error);
   }
 
-  if (error) {
-    throw new Error(error);
+  if (errors.length) {
+    throw new Error(errors.join('\n'));
   }
 };
