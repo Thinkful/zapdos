@@ -7,7 +7,7 @@ module.exports = async (checkpoint, checkpoints = null) => {
   // Fallback to this checkpoint
   checkpoints = checkpoints || [checkpoint];
 
-  let errors = [];
+  const errors = [];
 
   // Check for missing uuid
   if (!checkpoint.attributes.uuid) {
