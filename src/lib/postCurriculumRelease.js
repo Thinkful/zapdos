@@ -2,6 +2,8 @@ const c = require('ansi-colors');
 const axios = require('axios');
 const log = require('fancy-log');
 
+const getGithubRepoUrl = require('./getGithubRepoUrl');
+
 const {
   CONTENT_BUNDLE_RELEASES_AUTH_TOKEN,
   CONTENT_BUNDLES_URL,
@@ -25,6 +27,7 @@ module.exports = async curriculum => {
     const url = getUrl(curriculum);
     const data = {
       base_path: getBasePath(curriculum),
+      repo_url: getGithubRepoUrl(process.env.CIRCLE_REPOSITORY_URL),
       title: curriculum.name,
       version: curriculum.version,
     };
