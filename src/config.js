@@ -3,6 +3,7 @@ const DEPLOY_SERVER =
 
 // Pull from different env vars based on branch
 module.exports = {
+  CIRLE_REPO_URL: process.env.CIRCLE_REPOSITORY_URL,
   CONTENT_BUNDLE_RELEASES_AUTH_TOKEN:
     process.env[`${DEPLOY_SERVER}_CONTENT_BUNDLE_RELEASES_AUTH_TOKEN`],
   CONTENT_BUNDLES_URL: process.env[`${DEPLOY_SERVER}_CONTENT_BUNDLES_URL`],
