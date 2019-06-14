@@ -1,7 +1,8 @@
+const getTimeEstimateHours = require('./getTimeEstimateHours');
+
 const DEFAULT_ATTRIBUTES = {
   author: 'Thinkful',
   team: 'grading',
-  type: 'graded',
 };
 
 module.exports = async checkpoint => {
@@ -14,6 +15,9 @@ module.exports = async checkpoint => {
     DEFAULT_ATTRIBUTES,
     checkpoint.attributes
   );
+
+  // Translate time estimate
+  checkpoint.time = getTimeEstimateHours(checkpoint);
 
   // Delete `name` if it's present (use `title` instead)
   if (checkpoint.attributes.name) {

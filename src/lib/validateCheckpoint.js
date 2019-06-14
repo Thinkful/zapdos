@@ -1,3 +1,6 @@
+const c = require('ansi-colors');
+const log = require('fancy-log');
+
 const VALID_TEAM_VALUES = ['careers', 'grading'];
 
 const formatDuplicates = duplicates =>
@@ -24,6 +27,18 @@ module.exports = async (checkpoint, checkpoints = null) => {
       `has invalid team "${checkpoint.attributes.team}". ` +
       `Valid team values: ${VALID_TEAM_VALUES}`;
     errors.push(error);
+  }
+
+  // Check for missing time estimate
+  if (typeof checkpoint.attributes.time !== 'number') {
+    const error =
+      `CHECKPOINT_INVALID: Checkpoint ${checkpoint.src} ` +
+      `has a missing or invalid time estimate. ` +
+      `Times must be provided in hours or minutes.`;
+    // Temporarily log warning. This will throw an error and block the build
+    // in the coming weeks, but we need to give the curric team time to backfill
+    // missing data without blocking their release process. - KLL, 2019/06/14
+    log.warn(c.yellow(error));
   }
 
   // Check for a unique uuid
