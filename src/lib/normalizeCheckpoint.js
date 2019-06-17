@@ -9,6 +9,8 @@ module.exports = async checkpoint => {
   // Ensure all attributes are present
   checkpoint.attributes = Object.assign(
     {
+      // Keep raw time attribute for better error reporting
+      rawTime: checkpoint.attributes.time || null,
       // Alias name to title if not set
       title: checkpoint.attributes.name || 'Checkpoint',
     },

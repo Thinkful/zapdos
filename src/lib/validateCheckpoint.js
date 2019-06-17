@@ -33,8 +33,10 @@ module.exports = async (checkpoint, checkpoints = null) => {
   if (typeof checkpoint.attributes.time !== 'number') {
     const error =
       `CHECKPOINT_INVALID: Checkpoint ${checkpoint.src} ` +
-      `has a missing or invalid time estimate. ` +
-      `Times must be provided in hours or minutes.`;
+      `has a missing or invalid time estimate "${
+        checkpoint.attributes.rawTime
+      }". ` +
+      `Times must be provided in the form "N hours" or "N minutes".`;
     // Temporarily log warning. This will throw an error and block the build
     // in the coming weeks, but we need to give the curric team time to backfill
     // missing data without blocking their release process. - KLL, 2019/06/14
