@@ -13,12 +13,11 @@ module.exports = async checkpoint => {
       title: checkpoint.attributes.name || 'Checkpoint',
     },
     DEFAULT_ATTRIBUTES,
-    checkpoint.attributes
-  );
-
-  // Translate time estimate to hours
-  checkpoint.attributes.timeHours = getTimeEstimateHours(
-    checkpoint.attributes.time
+    checkpoint.attributes,
+    {
+      // Translate time estimate to hours
+      timeHours: getTimeEstimateHours(checkpoint.attributes.time),
+    }
   );
 
   // Delete `name` if it's present (use `title` instead)
