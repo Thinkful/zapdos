@@ -12,7 +12,7 @@ module.exports = checkpoint => {
   const minutesMatch = /^([\d]+)\sminutes?/.exec(time);
   if (minutesMatch) {
     // Convert minutes to hours
-    return Number(minutesMatch[0]) / MINUTES_PER_HOUR;
+    return Number(minutesMatch[1]) / MINUTES_PER_HOUR;
   }
 
   return null;
