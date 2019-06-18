@@ -19,7 +19,7 @@ module.exports = async checkpoint => {
   );
 
   // Translate time estimate
-  checkpoint.time = getTimeEstimateHours(checkpoint);
+  checkpoint.attributes.time = getTimeEstimateHours(checkpoint);
 
   // Delete `name` if it's present (use `title` instead)
   if (checkpoint.attributes.name) {
