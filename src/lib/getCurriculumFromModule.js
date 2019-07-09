@@ -28,6 +28,6 @@ module.exports = modFile => ({
   author: modFile.author || 'Unknown',
   parent: null,
   squadUrl: modFile.squad_url || null,
-  squadPermittedCourses: modFile.squadPermittedCourses || [],
+  squadPermittedCourses: modFile.squad_permitted_courses || [],
   children: modFile.checkpoints.map(getCurriclumCheckpointFromLibraryFile),
 });
