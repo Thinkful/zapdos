@@ -16,7 +16,7 @@ module.exports = async program => {
     }
 
     log(
-      `Posting program "${program.name}" (${
+      `Posting program "${program.name} [${program.code}]" (${
         program.uuid
       }) to ${PROGRAM_STRUCTURES_URL}`
     );
@@ -27,14 +27,14 @@ module.exports = async program => {
 
     log(
       `Successfully posted program "${
-        program.code
-      }" to ${PROGRAM_STRUCTURES_URL}: ${response.data}`
+        program.name
+      }" [${program.code}] to ${PROGRAM_STRUCTURES_URL}: ${response.data}`
     );
 
     return response.data;
   } catch (error) {
     log.error(
-      `Error posting program "${program.code}" (${program.uuid}): ${error}`
+      `Error posting program "${program.name}" [${program.code}] (${program.uuid}): ${error}`
     );
     throw error;
   }
