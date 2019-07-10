@@ -16,7 +16,7 @@ module.exports = async program => {
     }
 
     log(
-      `Posting program "${program.name} [${program.code}]" (${
+      `Posting program "${program.name}" [${program.code}] (${
         program.uuid
       }) to ${PROGRAM_STRUCTURES_URL}`
     );
