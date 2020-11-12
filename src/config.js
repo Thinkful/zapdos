@@ -1,5 +1,7 @@
+const PROD_BRANCH_NAME = process.env.PROD_BRANCH_NAME || 'master';
+
 const DEPLOY_SERVER =
-  process.env.CIRCLE_BRANCH === 'master' ? 'PROD' : 'PREVIEW';
+  process.env.CIRCLE_BRANCH === PROD_BRANCH_NAME ? 'PROD' : 'PREVIEW';
 
 // Pull from different env vars based on branch
 module.exports = {
